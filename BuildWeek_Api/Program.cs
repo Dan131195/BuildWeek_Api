@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System.Text;
+// PROVA
+
 
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Information()
