@@ -1,0 +1,6 @@
+@BuildWeek_Api_HostAddress = http://localhost:5225
+
+GET {{BuildWeek_Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
