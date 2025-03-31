@@ -5,25 +5,28 @@ namespace BuildWeek_Api.Models
     public class Prodotto
     {
         [Key]
-        public int Id { get; set; }
+        public Guid ProdottoId { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Nome { get; set; } = null!;
+        public required string Nome { get; set; } 
 
         [Required]
         [StringLength(50)]
-        public string Tipo { get; set; }
+        public required string Tipo { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string DittaFornitrice  { get; set; }
+        public required string DittaFornitrice  { get; set; }
 
         [Required]
         [StringLength(1000)]
-        public string ProdottoUso { get; set; }
+        public required string ProdottoUso { get; set; }
 
-        public PosizioneMedicinale? PosizioneMedicinale { get; set; }
+        [Required]
+        public Guid PosizioneId { get; set; }
+        public Posizione Posizione { get; set; } = null!;
+
         public ICollection<Vendita> Vendite { get; set; }
     }
 

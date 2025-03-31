@@ -5,14 +5,14 @@ namespace BuildWeek_Api.Models
     public class Animale
     {
         [Key]
-        public int Id { get; set; }
+        public Guid AnimaleId { get; set; }
 
         [Required]
         public required DateTime DataRegistrazione { get; set; }
 
         [Required]
         [MaxLength(50)]
-        public required string Nome { get; set; }
+        public required string NomeAnimale { get; set; }
 
         [Required]
         [MaxLength(50)]
@@ -35,7 +35,12 @@ namespace BuildWeek_Api.Models
         [MaxLength(50)]
         public string? CognomeProprietario { get; set; }
 
+        [MaxLength(50)]
+        public string? CodiceFiscaleProprietario {  get; set; }
+        public Cliente? Proprietario { get; set; } 
+
         public ICollection<Visita>? Visite { get; set; }
         public ICollection<Ricovero>? Ricoveri { get; set; }
+        public ICollection<Vendita>? Vendite { get; set; }
     }
 }
