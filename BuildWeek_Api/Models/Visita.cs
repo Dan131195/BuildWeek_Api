@@ -6,7 +6,7 @@ namespace BuildWeek_Api.Models
     public class Visita
     {
         [Key]
-        public int VisitaId { get; set; }
+        public Guid VisitaId { get; set; }
 
         [Required]
         public DateTime DataVisita { get; set; }
@@ -18,7 +18,7 @@ namespace BuildWeek_Api.Models
         public string CuraPrescritta { get; set; }
 
         [Required]
-        public int AnimaleId { get; set; }
+        public Guid AnimaleId { get; set; }
 
         [ForeignKey("AnimaleId")]
         public Animale? Animale { get; set; }

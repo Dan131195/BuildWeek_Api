@@ -1,14 +1,27 @@
-﻿namespace BuildWeek_Api.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BuildWeek_Api.Models
 {
     public class Vendita
     {
-        public int Id { get; set; }
-        public string ClienteCodiceFiscale { get; set; } = null!;
-        public int ProdottoId { get; set; }
-        public DateTime DataVendita { get; set; }
-        public string? NumeroRicetta { get; set; } // solo per medicinali
+        public Guid Id { get; set; }
+        [Required]
+        public Guid AnimaleId { get; set; }
 
-        public Cliente Cliente { get; set; } = null!;
-        public Prodotto Prodotto { get; set; } = null!;
+        [Required]
+        public required string CodiceFiscaleCliente { get; set; }
+
+        [Required]
+        public Guid ProdottoId { get; set; }
+
+        [Required]
+        public DateTime DataVendita { get; set; }
+
+        [Required]
+        public string? NumeroRicetta { get; set; } 
+
+        public Cliente Cliente { get; set; }
+        public Prodotto Prodotto { get; set; }
+        public Animale Animale { get; set; }
     }
 }
