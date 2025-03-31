@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildWeek_Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250331130500_Initial")]
+    [Migration("20250331141316_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -120,12 +120,6 @@ namespace BuildWeek_Api.Migrations
                             Id = "2",
                             Name = "Infermiere",
                             NormalizedName = "INFERMIERE"
-                        },
-                        new
-                        {
-                            Id = "3",
-                            Name = "Utente",
-                            NormalizedName = "UTENTE"
                         });
                 });
 

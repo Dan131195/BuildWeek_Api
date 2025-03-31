@@ -8,7 +8,7 @@ namespace BuildWeek_Api.Models
         public Guid AnimaleId { get; set; }
 
         [Required]
-        public required DateTime DataRegistrazione { get; set; }
+        public required DateTime DataRegistrazione { get; set; } = DateTime.Now;
 
         [Required]
         [MaxLength(50)]
