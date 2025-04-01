@@ -19,6 +19,14 @@ namespace BuildWeek_Api.Controllers
             _logger = logger;
         }
 
+        [HttpGet("tutti")]
+        [Authorize(Roles = "Veterinario")]
+        public async Task<ActionResult<List<RicoveroReadDto>>> GetTutti()
+        {
+            var elenco = await _service.GetTuttiRicoveriAsync();
+            return Ok(elenco);
+        }
+
         [HttpPost]
         [Authorize(Roles = "Veterinario")]
         public async Task<IActionResult> CreaRicovero([FromBody] RicoveroCreateDto dto)
@@ -55,6 +63,18 @@ namespace BuildWeek_Api.Controllers
             var success = await _service.ChiudiRicoveroAsync(id, dto.DataFine);
             if (!success) return NotFound("Ricovero non trovato o errore durante la chiusura.");
             return Ok("Ricovero chiuso con successo.");
+        }
+
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Veterinario")]
+        public async Task<IActionResult> ModificaRicovero(Guid id, [FromBody] RicoveroEditDto dto)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var success = await _service.EditRicoveroAsync(id, dto);
+            if (!success) return NotFound("Ricovero non trovato o errore durante l'aggiornamento.");
+
+            return Ok("Ricovero aggiornato con successo.");
         }
 
         [HttpGet("ricerca-microchip/{numero}")]
