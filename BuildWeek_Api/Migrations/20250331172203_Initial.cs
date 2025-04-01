@@ -66,7 +66,7 @@ namespace BuildWeek_Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Posizione",
+                name: "Posizioni",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -75,7 +75,7 @@ namespace BuildWeek_Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Posizione", x => x.Id);
+                    table.PrimaryKey("PK_Posizioni", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -220,17 +220,17 @@ namespace BuildWeek_Api.Migrations
                     Tipo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DittaFornitrice = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ProdottoUso = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    PosizioneId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    PosizioneId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Prodotti", x => x.ProdottoId);
                     table.ForeignKey(
-                        name: "FK_Prodotti_Posizione_PosizioneId",
+                        name: "FK_Prodotti_Posizioni_PosizioneId",
                         column: x => x.PosizioneId,
-                        principalTable: "Posizione",
+                        principalTable: "Posizioni",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
@@ -320,8 +320,7 @@ namespace BuildWeek_Api.Migrations
                 values: new object[,]
                 {
                     { "1", null, "Veterinario", "VETERINARIO" },
-                    { "2", null, "Infermiere", "INFERMIERE" },
-                    { "3", null, "Utente", "UTENTE" }
+                    { "2", null, "Infermiere", "INFERMIERE" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -379,7 +378,8 @@ namespace BuildWeek_Api.Migrations
                 name: "IX_Prodotti_PosizioneId",
                 table: "Prodotti",
                 column: "PosizioneId",
-                unique: true);
+                unique: true,
+                filter: "[PosizioneId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ricoveri_AnimaleId",
@@ -447,7 +447,7 @@ namespace BuildWeek_Api.Migrations
                 name: "Animali");
 
             migrationBuilder.DropTable(
-                name: "Posizione");
+                name: "Posizioni");
 
             migrationBuilder.DropTable(
                 name: "Clienti");

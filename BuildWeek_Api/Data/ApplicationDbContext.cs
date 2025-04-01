@@ -21,6 +21,7 @@ namespace BuildWeek_Api.Data
         public DbSet<Prodotto> Prodotti { get; set; }
         public DbSet<Cliente> Clienti { get; set; }
         public DbSet<Vendita> Vendite { get; set; }
+        public DbSet<Posizione> Posizioni { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -63,9 +64,9 @@ namespace BuildWeek_Api.Data
 
             builder.Entity<Prodotto>()
                 .HasOne(p => p.Posizione)
-                .WithOne(pos => pos.Prodotto)
+                .WithOne()
                 .HasForeignKey<Prodotto>(p => p.PosizioneId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.Entity<Prodotto>()
                 .HasMany(p => p.Vendite)

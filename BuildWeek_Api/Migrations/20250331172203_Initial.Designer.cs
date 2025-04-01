@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BuildWeek_Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250331130500_Initial")]
+    [Migration("20250331172203_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -120,12 +120,6 @@ namespace BuildWeek_Api.Migrations
                             Id = "2",
                             Name = "Infermiere",
                             NormalizedName = "INFERMIERE"
-                        },
-                        new
-                        {
-                            Id = "3",
-                            Name = "Utente",
-                            NormalizedName = "UTENTE"
                         });
                 });
 
@@ -246,7 +240,7 @@ namespace BuildWeek_Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Posizione");
+                    b.ToTable("Posizioni");
                 });
 
             modelBuilder.Entity("BuildWeek_Api.Models.Prodotto", b =>
@@ -265,7 +259,7 @@ namespace BuildWeek_Api.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("PosizioneId")
+                    b.Property<Guid?>("PosizioneId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ProdottoUso")
@@ -281,7 +275,8 @@ namespace BuildWeek_Api.Migrations
                     b.HasKey("ProdottoId");
 
                     b.HasIndex("PosizioneId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[PosizioneId] IS NOT NULL");
 
                     b.ToTable("Prodotti");
                 });
@@ -511,10 +506,9 @@ namespace BuildWeek_Api.Migrations
             modelBuilder.Entity("BuildWeek_Api.Models.Prodotto", b =>
                 {
                     b.HasOne("BuildWeek_Api.Models.Posizione", "Posizione")
-                        .WithOne("Prodotto")
+                        .WithOne()
                         .HasForeignKey("BuildWeek_Api.Models.Prodotto", "PosizioneId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Posizione");
                 });
@@ -627,12 +621,6 @@ namespace BuildWeek_Api.Migrations
                     b.Navigation("Animali");
 
                     b.Navigation("Vendite");
-                });
-
-            modelBuilder.Entity("BuildWeek_Api.Models.Posizione", b =>
-                {
-                    b.Navigation("Prodotto")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BuildWeek_Api.Models.Prodotto", b =>

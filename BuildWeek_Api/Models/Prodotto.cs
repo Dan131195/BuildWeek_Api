@@ -23,9 +23,8 @@ namespace BuildWeek_Api.Models
         [StringLength(1000)]
         public required string ProdottoUso { get; set; }
 
-        [Required]
-        public Guid PosizioneId { get; set; }
-        public Posizione Posizione { get; set; } = null!;
+        public Guid? PosizioneId { get; set; }
+        public Posizione? Posizione { get; set; }
 
         public ICollection<Vendita> Vendite { get; set; }
     }
