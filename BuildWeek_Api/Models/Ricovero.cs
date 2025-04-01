@@ -10,6 +10,7 @@ namespace BuildWeek_Api.Models
 
         [Required]
         public required DateTime DataInizio { get; set; }
+        public DateTime? DataFine { get; set; }
 
         public string? Tipologia { get; set; }
 
@@ -18,10 +19,6 @@ namespace BuildWeek_Api.Models
         public bool? MicrochipPresente { get; set; }
 
         public string? NumeroMicrochip { get; set; }
-
-        public string? Nome { get; set; } 
-
-        public DateTime? DataNascita { get; set; }
 
         [Required]
         public required string Descrizione { get; set; }
