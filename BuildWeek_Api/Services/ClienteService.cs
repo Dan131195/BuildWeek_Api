@@ -66,7 +66,7 @@ namespace BuildWeek_Api.Services
             {
                 if (await _context.Clienti.AnyAsync(c => c.CodiceFiscale == cliente.CodiceFiscale))
                 {
-                    _logger.LogWarning("Cliente con CF {CF} esiste già.", cliente.CodiceFiscale);
+                    _logger.LogWarning($"Cliente con CF {cliente.CodiceFiscale} esiste già.");
                     return null;
                 }
 

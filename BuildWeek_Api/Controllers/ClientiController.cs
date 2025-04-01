@@ -15,7 +15,6 @@ namespace BuildWeek_Api.Controllers
             _clienteService = clienteService;
         }
 
-        // GET: api/Clienti
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cliente>>> GetClienti()
         {
@@ -23,7 +22,6 @@ namespace BuildWeek_Api.Controllers
             return Ok(clienti);
         }
 
-        // GET: api/Clienti/{codiceFiscale}
         [HttpGet("{codiceFiscale}")]
         public async Task<ActionResult<Cliente>> GetCliente(string codiceFiscale)
         {
@@ -34,7 +32,6 @@ namespace BuildWeek_Api.Controllers
             return Ok(cliente);
         }
 
-        // POST: api/Clienti
         [HttpPost]
         public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
         {
@@ -45,7 +42,6 @@ namespace BuildWeek_Api.Controllers
             return CreatedAtAction(nameof(GetCliente), new { codiceFiscale = cliente.CodiceFiscale }, cliente);
         }
 
-        // DELETE: api/Clienti/{codiceFiscale}
         [HttpDelete("{codiceFiscale}")]
         public async Task<IActionResult> DeleteCliente(string codiceFiscale)
         {
