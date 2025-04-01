@@ -29,8 +29,8 @@ namespace BuildWeek_Api.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CodiceFiscaleProprietario")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<string>("CognomeProprietario")
                         .HasMaxLength(50)
@@ -211,8 +211,8 @@ namespace BuildWeek_Api.Migrations
             modelBuilder.Entity("BuildWeek_Api.Models.Cliente", b =>
                 {
                     b.Property<string>("CodiceFiscale")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.HasKey("CodiceFiscale");
 
@@ -290,10 +290,10 @@ namespace BuildWeek_Api.Migrations
                     b.Property<string>("ColoreMantello")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DataInizio")
+                    b.Property<DateTime?>("DataFine")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DataNascita")
+                    b.Property<DateTime>("DataInizio")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Descrizione")
@@ -302,9 +302,6 @@ namespace BuildWeek_Api.Migrations
 
                     b.Property<bool?>("MicrochipPresente")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumeroMicrochip")
                         .HasColumnType("nvarchar(max)");
@@ -330,7 +327,7 @@ namespace BuildWeek_Api.Migrations
 
                     b.Property<string>("CodiceFiscaleCliente")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<DateTime>("DataVendita")
                         .HasColumnType("datetime2");
