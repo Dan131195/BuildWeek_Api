@@ -2,6 +2,7 @@ using BuildWeek_Api.Data;
 using BuildWeek_Api.Models.Auth;
 using BuildWeek_Api.Services;
 using BuildWeek_Api.Settings;
+using BuildWeek_Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -88,6 +89,9 @@ try
     builder.Services.AddScoped<SignInManager<ApplicationUser>>();
     builder.Services.AddScoped<RoleManager<ApplicationRole>>();
     builder.Services.AddScoped<AnimaleServices>();
+
+    builder.Services.AddScoped<ProdottoService>();
+    builder.Services.AddScoped<PosizioneService>();
 
     builder.Host.UseSerilog();
 
