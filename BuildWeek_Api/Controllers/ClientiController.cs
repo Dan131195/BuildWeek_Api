@@ -1,4 +1,4 @@
-﻿using BuildWeek_Api.Models;
+﻿using BuildWeek_Api.DTOs;
 using BuildWeek_Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +17,7 @@ namespace BuildWeek_Api.Controllers
 
         // GET: api/Clienti
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cliente>>> GetClienti()
+        public async Task<ActionResult<IEnumerable<ClienteDTO>>> GetClienti()
         {
             var clienti = await _clienteService.GetClientiAsync();
             return Ok(clienti);
@@ -25,7 +25,7 @@ namespace BuildWeek_Api.Controllers
 
         // GET: api/Clienti/{codiceFiscale}
         [HttpGet("{codiceFiscale}")]
-        public async Task<ActionResult<Cliente>> GetCliente(string codiceFiscale)
+        public async Task<ActionResult<ClienteDTO>> GetCliente(string codiceFiscale)
         {
             var cliente = await _clienteService.GetClienteByCFAsync(codiceFiscale);
             if (cliente == null)
@@ -36,7 +36,7 @@ namespace BuildWeek_Api.Controllers
 
         // POST: api/Clienti
         [HttpPost]
-        public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
+        public async Task<ActionResult<ClienteDTO>> PostCliente(ClienteDTO cliente)
         {
             var creato = await _clienteService.CreateClienteAsync(cliente);
             if (creato == null)
