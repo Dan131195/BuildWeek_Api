@@ -37,6 +37,7 @@ namespace BuildWeek_Api.Services
 
             return new AnimaleDTO
             {
+                AnimaleId = animale.AnimaleId,
                 DataRegistrazione = animale.DataRegistrazione,
                 NomeAnimale = animale.NomeAnimale,
                 Tipologia = animale.Tipologia,
