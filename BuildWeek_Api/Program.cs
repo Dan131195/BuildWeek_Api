@@ -87,13 +87,14 @@ try
     builder.Services.AddScoped<UserManager<ApplicationUser>>();
     builder.Services.AddScoped<SignInManager<ApplicationUser>>();
     builder.Services.AddScoped<RoleManager<ApplicationRole>>();
+    
     builder.Services.AddScoped<AnimaleServices>();
     builder.Services.AddScoped<ClienteService>();
     builder.Services.AddScoped<VisitaService>();
-
-
+    builder.Services.AddScoped<RicoveroService>();
     builder.Services.AddScoped<ProdottoService>();
     builder.Services.AddScoped<PosizioneService>();
+    builder.Services.AddScoped<VenditaService>();
 
     builder.Host.UseSerilog();
 

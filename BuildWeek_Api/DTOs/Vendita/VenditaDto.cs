@@ -2,7 +2,7 @@
 {
     public class VenditaDTO
     {
-        public Guid Id { get; set; } 
+        public Guid? Id { get; set; } 
 
         public Guid AnimaleId { get; set; }
 

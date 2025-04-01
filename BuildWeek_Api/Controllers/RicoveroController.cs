@@ -47,7 +47,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Veterinario")]
+        //[Authorize(Roles = "Veterinario")]
         public async Task<ActionResult<RicoveroReadDto>> GetRicovero(Guid id)
         {
             var r = await _service.GetByIdAsync(id);
