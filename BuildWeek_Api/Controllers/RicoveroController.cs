@@ -1,7 +1,6 @@
 ﻿using BuildWeek_Api.DTOs.Ricovero;
 using BuildWeek_Api.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildWeek_Api.Controllers
