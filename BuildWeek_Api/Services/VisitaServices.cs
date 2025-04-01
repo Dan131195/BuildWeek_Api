@@ -109,7 +109,7 @@ namespace BuildWeek_Api.Services
             return await SaveAsync();
         }
 
-        // animale
+       
         public async Task<IEnumerable<VisitaDTO>> GetAnamnesiByAnimaleAsync(Guid animaleId)
         {
             return await _context.Visite
