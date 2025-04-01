@@ -90,6 +90,7 @@ try
     builder.Services.AddScoped<RoleManager<ApplicationRole>>();
     builder.Services.AddScoped<AnimaleServices>();
     builder.Services.AddScoped<ClienteService>();
+    builder.Services.AddScoped<VisitaService>();
 
 
     builder.Services.AddScoped<ProdottoService>();
