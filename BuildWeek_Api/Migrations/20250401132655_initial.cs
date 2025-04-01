@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BuildWeek_Api.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -58,7 +58,7 @@ namespace BuildWeek_Api.Migrations
                 name: "Clienti",
                 columns: table => new
                 {
-                    CodiceFiscale = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    CodiceFiscale = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -198,7 +198,7 @@ namespace BuildWeek_Api.Migrations
                     NumeroMicrochip = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     NomeProprietario = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CognomeProprietario = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    CodiceFiscaleProprietario = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    CodiceFiscaleProprietario = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -239,12 +239,11 @@ namespace BuildWeek_Api.Migrations
                 {
                     RicoveroId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataInizio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataFine = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Tipologia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ColoreMantello = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MicrochipPresente = table.Column<bool>(type: "bit", nullable: true),
                     NumeroMicrochip = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DataNascita = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Descrizione = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AnimaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
@@ -286,7 +285,7 @@ namespace BuildWeek_Api.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AnimaleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CodiceFiscaleCliente = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    CodiceFiscaleCliente = table.Column<string>(type: "nvarchar(16)", nullable: false),
                     ProdottoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataVendita = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumeroRicetta = table.Column<string>(type: "nvarchar(max)", nullable: false)

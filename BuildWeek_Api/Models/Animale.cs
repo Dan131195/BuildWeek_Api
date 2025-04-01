@@ -35,7 +35,7 @@ namespace BuildWeek_Api.Models
         [MaxLength(50)]
         public string? CognomeProprietario { get; set; }
 
-        [MaxLength(50)]
+        [MaxLength(16)]
         public string? CodiceFiscaleProprietario {  get; set; }
         public Cliente? Proprietario { get; set; } 
 
