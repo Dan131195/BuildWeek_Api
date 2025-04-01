@@ -6,7 +6,7 @@ namespace BuildWeek_Api.Models
     public class Cliente
     {
         [Key]
-        [StringLength(50)]
+        [StringLength(16)]
         public string CodiceFiscale { get; set; }
 
         public ICollection<Vendita> Vendite { get; set; }
