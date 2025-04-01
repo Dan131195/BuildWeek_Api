@@ -117,12 +117,6 @@ namespace BuildWeek_Api.Migrations
                             Id = "2",
                             Name = "Infermiere",
                             NormalizedName = "INFERMIERE"
-                        },
-                        new
-                        {
-                            Id = "3",
-                            Name = "Utente",
-                            NormalizedName = "UTENTE"
                         });
                 });
 

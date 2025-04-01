@@ -320,8 +320,7 @@ namespace BuildWeek_Api.Migrations
                 values: new object[,]
                 {
                     { "1", null, "Veterinario", "VETERINARIO" },
-                    { "2", null, "Infermiere", "INFERMIERE" },
-                    { "3", null, "Utente", "UTENTE" }
+                    { "2", null, "Infermiere", "INFERMIERE" }
                 });
 
             migrationBuilder.CreateIndex(
