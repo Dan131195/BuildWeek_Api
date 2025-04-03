@@ -7,6 +7,7 @@ namespace BuildWeek_Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    
     public class RicoveroController : ControllerBase
     {
         private readonly RicoveroService _service;
@@ -19,7 +20,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpGet("tutti")]
-        //[Authorize(Roles = "Veterinario")]
+        [Authorize]
         public async Task<ActionResult<List<RicoveroReadDto>>> GetTutti()
         {
             var elenco = await _service.GetTuttiRicoveriAsync();
@@ -27,7 +28,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Veterinario")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<IActionResult> CreaRicovero([FromBody] RicoveroCreateDto dto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -39,7 +40,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpGet("attivi")]
-        //[Authorize(Roles = "Veterinario")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<ActionResult<List<RicoveroReadDto>>> GetRicoveriAttivi()
         {
             var elenco = await _service.GetRicoveriAttiviAsync();
@@ -47,7 +48,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpGet("{id}")]
-        //[Authorize(Roles = "Veterinario")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<ActionResult<RicoveroReadDto>> GetRicovero(Guid id)
         {
             var r = await _service.GetByIdAsync(id);
@@ -56,7 +57,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpPatch("{id}/chiudi")]
-        //[Authorize(Roles = "Veterinario")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<IActionResult> ChiudiRicovero(Guid id, [FromBody] RicoveroUpdateDto dto)
         {
             var success = await _service.ChiudiRicoveroAsync(id, dto.DataFine);
@@ -65,7 +66,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpPut("{id}")]
-        //[Authorize(Roles = "Veterinario")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<IActionResult> ModificaRicovero(Guid id, [FromBody] RicoveroEditDto dto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);

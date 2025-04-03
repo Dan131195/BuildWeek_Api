@@ -2,6 +2,7 @@
 using BuildWeek_Api.DTOs.Prodotto;
 using BuildWeek_Api.Models;
 using BuildWeek_Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildWeek_Api.Controllers
@@ -23,6 +24,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> AllProdotti()
         {
             try
@@ -52,6 +54,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> ProdottoById(Guid id)
         {
             try
@@ -86,6 +89,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Veterinario")]
         public async Task<IActionResult> CreateProdotto([FromBody] ProdottoCreateDto dto)
         {
             try
@@ -142,6 +146,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<IActionResult> UpdateProdotto(Guid id, [FromBody] ProdottoUpdateDto dto)
         {
             if (id != dto.ProdottoId)
@@ -185,7 +190,9 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<IActionResult> DeleteProdotto(Guid id)
+
         {
             try
             {

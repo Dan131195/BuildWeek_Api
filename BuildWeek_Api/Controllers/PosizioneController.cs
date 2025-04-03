@@ -1,13 +1,14 @@
 ﻿using BuildWeek_Api.DTOs.Posizione;
 using BuildWeek_Api.Models;
 using BuildWeek_Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildWeek_Api.Controllers
 {
     [ApiController]
     [Route("api/farmacia/[controller]")]
-
+    [Authorize(Roles = "Veterinario")]
     public class PosizioneController : ControllerBase
     {
         private readonly PosizioneService _service;

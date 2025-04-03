@@ -2,12 +2,14 @@
 using BuildWeek_Api.DTOs.Animale;
 using BuildWeek_Api.Models;
 using BuildWeek_Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildWeek_Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AnimaleController : ControllerBase
     {
         private readonly AnimaleServices _animaleServices;
@@ -17,6 +19,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<AnimaleDTO>>> GetAnimali()
         {
             var animali = await _animaleServices.GetAnimaliAsync();
@@ -26,6 +29,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<AnimaleDTO>> GetAnimale(Guid id)
         {
             var animale = await _animaleServices.GetAnimaleByIdAsync(id);
@@ -35,6 +39,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Veterinario")]
         public async Task<ActionResult<AnimaleDTO>> CreateAnimale([FromBody] CreateAnimaleDTO createDto)
         {
             var created = await _animaleServices.CreateAnimaleAsync(createDto);
@@ -44,6 +49,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<IActionResult> UpdateAnimale(Guid id, [FromBody] UpdateAnimaleDTO updateDto)
         {
             var success = await _animaleServices.UpdateAnimaleAsync(id, updateDto);
@@ -53,6 +59,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<IActionResult> DeleteAnimale(Guid id)
         {
             var success = await _animaleServices.DeleteAnimaleAsync(id);

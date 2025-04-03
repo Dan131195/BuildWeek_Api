@@ -2,6 +2,7 @@
 {
     public class UpdateAnimaleDTO
     {
+        public Guid AnimaleId { get; set; }
         public string? NomeAnimale { get; set; }
         public string? Tipologia { get; set; }
         public string? ColoreMantello { get; set; }

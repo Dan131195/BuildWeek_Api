@@ -1,5 +1,6 @@
 ﻿using BuildWeek_Api.DTOs;
 using BuildWeek_Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildWeek_Api.Controllers
@@ -17,6 +18,7 @@ namespace BuildWeek_Api.Controllers
 
         // GET: api/farmacia/Vendita
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<VenditaDTO>>> GetVendite()
         {
             var vendite = await _venditaService.GetVenditeDtoAsync();
@@ -25,6 +27,7 @@ namespace BuildWeek_Api.Controllers
 
         // GET: api/farmacia/Vendita/{id}
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<VenditaDTO>> GetVendita(Guid id)
         {
             var vendita = await _venditaService.GetVenditaDtoByIdAsync(id);
@@ -36,6 +39,7 @@ namespace BuildWeek_Api.Controllers
 
         // POST: api/farmacia/Vendita
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<VenditaDTO>> PostVendita(VenditaDTO dto)
         {
             var nuovaVendita = await _venditaService.CreateVenditaFromDtoAsync(dto);
@@ -47,6 +51,7 @@ namespace BuildWeek_Api.Controllers
 
         // PUT: api/farmacia/Vendita/{id}
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutVendita(Guid id, VenditaDTO dto)
         {
             var aggiornata = await _venditaService.UpdateVenditaFromDtoAsync(id, dto);
@@ -58,6 +63,7 @@ namespace BuildWeek_Api.Controllers
 
         // DELETE: api/farmacia/Vendita/{id}
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteVendita(Guid id)
         {
             var eliminata = await _venditaService.DeleteVenditaAsync(id);
@@ -69,6 +75,7 @@ namespace BuildWeek_Api.Controllers
 
         // GET: api/farmacia/Vendita/byCliente/{codiceFiscale}
         [HttpGet("byCliente/{codiceFiscale}")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<ActionResult<IEnumerable<VenditaDTO>>> GetVenditeByCliente(string codiceFiscale)
         {
             var vendite = await _venditaService.GetVenditeDtoByClienteAsync(codiceFiscale);
@@ -80,6 +87,7 @@ namespace BuildWeek_Api.Controllers
 
         // GET: api/farmacia/Vendita/byDate?date=yyyy-MM-dd
         [HttpGet("byDate")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<ActionResult<IEnumerable<VenditaDTO>>> GetVenditeByDate([FromQuery] DateTime date)
         {
             var vendite = await _venditaService.GetVenditeDtoByDateAsync(date);

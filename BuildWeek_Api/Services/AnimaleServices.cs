@@ -72,6 +72,8 @@ namespace BuildWeek_Api.Services
         // Mapping: aggiornamento dei campi con i dati del DTO
         private void MapFromUpdateDTO(Animale animale, UpdateAnimaleDTO dto)
         {
+            if (dto.AnimaleId != null)
+                animale.AnimaleId = dto.AnimaleId;
             if (dto.NomeAnimale != null)
                 animale.NomeAnimale = dto.NomeAnimale;
             if (dto.Tipologia != null)

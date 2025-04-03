@@ -1,11 +1,13 @@
 ﻿using BuildWeek_Api.DTOs;
 using BuildWeek_Api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildWeek_Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ClientiController : ControllerBase
     {
         private readonly ClienteService _clienteService;
