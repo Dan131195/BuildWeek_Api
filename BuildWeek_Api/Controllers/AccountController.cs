@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using BuildWeek_Api.DTOs.Account;
+using Microsoft.AspNetCore.Authorization;
+using Serilog;
 
 namespace BuildWeek_Api.Controllers
 {
@@ -30,6 +32,7 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpPost("register")]
+        [Authorize(Roles = "Veterinario")]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto registerRequestDto)
         {
             var newUser = new ApplicationUser()
@@ -44,6 +47,7 @@ namespace BuildWeek_Api.Controllers
 
             if (!result.Succeeded)
             {
+                Console.WriteLine(result);
                 return BadRequest();
             }
 

@@ -7,7 +7,7 @@ namespace BuildWeek_Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    
+
     public class RicoveroController : ControllerBase
     {
         private readonly RicoveroService _service;
@@ -93,6 +93,15 @@ namespace BuildWeek_Api.Controllers
                 descrizione = r.Descrizione
             });
         }
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "Veterinario")]
+        public async Task<IActionResult> EliminaRicovero(Guid id)
+        {
+            var success = await _service.EliminaRicoveroAsync(id);
+            if (!success) return NotFound("Ricovero non trovato.");
+            return Ok("Ricovero eliminato con successo.");
+        }
+
     }
 
 }

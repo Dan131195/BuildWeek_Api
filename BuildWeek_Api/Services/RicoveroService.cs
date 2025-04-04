@@ -203,6 +203,24 @@ namespace BuildWeek_Api.Services
                 throw;
             }
         }
+
+        public async Task<bool> EliminaRicoveroAsync(Guid id)
+        {
+            try
+            {
+                var ricovero = await _context.Ricoveri.FindAsync(id);
+                if (ricovero == null) return false;
+
+                _context.Ricoveri.Remove(ricovero);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Errore durante l'eliminazione del ricovero ID={id}");
+                return false;
+            }
+        }
     }
 
 }

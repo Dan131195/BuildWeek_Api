@@ -7,7 +7,7 @@ namespace BuildWeek_Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-
+    [Authorize]
     public class VisiteController : ControllerBase
     {
         private readonly VisitaService _visitaService;
@@ -31,7 +31,6 @@ namespace BuildWeek_Api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Veterinario")]
         public async Task<ActionResult<VisitaDTO>> CreateVisita(VisitaDTO dto)
         {
             var creata = await _visitaService.CreateVisitaAsync(dto);

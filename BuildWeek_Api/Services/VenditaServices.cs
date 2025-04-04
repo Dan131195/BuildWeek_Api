@@ -165,6 +165,7 @@ namespace BuildWeek_Api.Services
         // 🔹 GET by Data
         public async Task<IEnumerable<VenditaDTO>> GetVenditeDtoByDateAsync(DateTime date)
         {
+            Console.WriteLine(date);
             return await _context.Vendite
                 .Where(v => v.DataVendita.Date == date.Date)
                 .Select(v => new VenditaDTO
@@ -177,6 +178,7 @@ namespace BuildWeek_Api.Services
                     DataVendita = v.DataVendita
                 })
                 .ToListAsync();
+            
         }
     }
 }
